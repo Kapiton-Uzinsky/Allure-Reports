@@ -23,6 +23,7 @@ public class SelenideTest {
         $(By.partialLinkText("Issues")).click();
         $(byText("#68")).should(Condition.exist);
 
+
     }
 
 }

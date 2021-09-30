@@ -3,7 +3,6 @@ package guru.qa.allure;
 import com.codeborne.selenide.Condition;
 import org.junit.jupiter.api.Test;
 
-import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
@@ -19,14 +18,12 @@ public class LambdaStepTest {
     @Test
     public void testRepositoryIssue() {
         step("Открываем главную страницу", () -> {
-
+            open("https://github.com");
         });
-        open("https://github.com");
+
 
         step("Ищем репозиторий" + REPOSITORY, () -> {
-            $(".header-search-input").click();
-            $(".header-search-input").sendKeys(REPOSITORY);
-            $(".header-search-input").submit();
+            $(".header-search-input").setValue(REPOSITORY).submit();
         });
 
         step("Переходим в репозиторий", () -> {
@@ -37,7 +34,7 @@ public class LambdaStepTest {
             $(partialLinkText("Issues")).click();
         });
         step("Проверка существования Issues  С номером " + ISSUE_NUMBER, () -> {
-            $(withText("#" + ISSUE_NUMBER)).should(Condition.exist);
+            $(withText("#" + ISSUE_NUMBER)).should(Condition.visible);
 
         });
     }
