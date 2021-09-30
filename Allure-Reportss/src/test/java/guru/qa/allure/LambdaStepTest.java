@@ -19,9 +19,9 @@ public class LambdaStepTest {
     @Test
     public void testRepositoryIssue() {
         step("Открываем главную страницу", () -> {
-
+            open("https://github.com");
         });
-        open("https://github.com");
+
 
         step("Ищем репозиторий" + REPOSITORY, () -> {
             $(".header-search-input").click();
@@ -37,7 +37,7 @@ public class LambdaStepTest {
             $(partialLinkText("Issues")).click();
         });
         step("Проверка существования Issues  С номером " + ISSUE_NUMBER, () -> {
-            $(withText("#" + ISSUE_NUMBER)).should(Condition.exist);
+            $(withText("#" + ISSUE_NUMBER)).should(Condition.visible);
 
         });
     }
